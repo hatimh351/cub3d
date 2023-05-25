@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:37:12 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/20 04:32:11 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/20 07:54:18 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include "unistd.h"
 #define WIDTH 1400
 #define HEIGHT 600
+
+#define SQUARE_SIZE 30
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
 typedef struct s_cub3d
 {
 	mlx_t		*mlx;
@@ -26,8 +34,11 @@ typedef struct s_cub3d
 	double		ypos;
 	int			map_height;
 	int			map_width;
+	int			right;
+	int			down;
 	char		**map;
 }   t_cub3d;
+
 // map drawing
 void	draw_map(t_cub3d *ptr);
 int		draw_cercel(t_cub3d *ptr, int x, int y);
@@ -39,3 +50,7 @@ int 	get_color(int r, int g, int b, int a);
 void	get_player_position(t_cub3d *ptr);
 int		map_protection(t_cub3d *ptr, int x, int y);
 int		there_is_wall(t_cub3d *ptr, double x, double y);
+
+// intersection
+int		horizontal_intersection(t_cub3d *ptr);
+void	ft_facing(t_cub3d *ptr);

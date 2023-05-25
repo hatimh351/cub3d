@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 23:36:54 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/20 04:32:43 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/20 08:00:32 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void init(t_cub3d *ptr)
 	ptr->map = map;
 	ptr->map_height = 6;
 	ptr->map_width = 10;
-	ptr->angle = 0;
-	ptr->map_img = mlx_new_image(ptr->mlx, ptr->map_width * 20, ptr->map_height * 20);
+	ptr->angle = 90;
+	ptr->map_img = mlx_new_image(ptr->mlx, ptr->map_width * SQUARE_SIZE, ptr->map_height * SQUARE_SIZE);
 	mlx_image_to_window(ptr->mlx, ptr->map_img, 0, 0);
 	get_player_position(ptr);
-	printf("%f %f\n",ptr->xpos, ptr->ypos);
 }
 
 int main()

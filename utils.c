@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 01:00:53 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/20 04:39:30 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/20 08:23:51 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ int map_protection(t_cub3d *ptr, int x, int y)
 {
 	if (x < 0 || y < 0)
 		return (0);
-	if (x > (ptr->map_width * 20) || y > (ptr->map_height * 20))
+	if (x > (ptr->map_width * SQUARE_SIZE) || y > (ptr->map_height * SQUARE_SIZE))
 		return (0);
 	return (1);
 }
 
 int	there_is_wall(t_cub3d *ptr, double x, double y)
 {
-	x = x / 20;
-	y = y / 20;
-	if (ptr->map[(int)floor(y)][(int)floor(x)] == '1')
+	x = ((int)x) / SQUARE_SIZE;
+	y = ((int)y) / SQUARE_SIZE;
+	if (ptr->map[(int)(y)][(int)(x)] == '1')
 		return (1);
 	return (0);
 }
@@ -71,13 +71,12 @@ void	get_player_position(t_cub3d *ptr)
 	while (i < ptr->map_height)
 	{
 		j = 0;
-		printf("%s\n",ptr->map[i]);
 		while (j < ptr->map_width)
 		{
 			if (ptr->map[i][j] == 'P')
 			{
-				ptr->xpos = 20 * j;
-				ptr->ypos = 20 * i;
+				ptr->xpos = SQUARE_SIZE * j;
+				ptr->ypos = SQUARE_SIZE * i;
 				return;
 			}
 			j++;
