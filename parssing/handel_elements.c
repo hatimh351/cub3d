@@ -6,23 +6,13 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 08:20:07 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/25 15:13:39 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:51:33 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // NO SO WE EA F C
-
-void	free_splite(char **av)
-{
-	int	i;
-
-	i = 0;
-	while (av[i])
-		free(av[i++]);
-	free(av);	
-}
 
 int	is_element(char **elements,char **av)
 {
@@ -96,58 +86,23 @@ int handel_elements(t_data *ptr, int fd)
 
 int	get_elements(int fd, t_data *ptr)
 {
+	int	i;
+
+	i = 0;
 	if (handel_elements(ptr, fd) == -1)
 		return (-1);
 	if (!all_elements_in(ptr))
-		return (-1);
+		return (free_splite(ptr->elements), -1);
 	return (0);
 }
 
-
-int	main()
+int	get_map(t_data *ptr, int fd)
 {
-	t_data *ptr;
-	t_lines *head;
-	int		fd;
-
-	ptr = ft_calloc(sizeof(t_data), 1);
-	fd = open("file.cub", O_RDONLY);
-	if (get_elements(fd, ptr) == -1)
-		printf("NO\n");
-	else
-	{
-		int	i;
-		i = 0;
-		while (i < 6)
-			printf("%s\n", ptr->elements[i++]);
-		height_width (fd, ptr, &head);
-	}
-	char	**map = creat_map(head, ptr->height, ptr->width);
-	int i,j;
-
-	i = 0;
-	while (i < ptr->height)
-	{
-		j = 0;
-		while (j < ptr->width)
-		{
-			printf("%c", map[i][j]);
-			j++;
-		}
-		printf("'\n");
-		i++;
-	}
-	t_lines *tmp;
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);	
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp->line);
-		free(tmp);
-	}
-	while (1);	
+	if (height_width(fd, ptr, &ptr->head) == -1)
+		return (free_lines(ptr->head), -1);
+	ptr->map = creat_map(ptr->head, ptr->height, ptr->width);
+	free_lines(ptr->head);
+	if (!ptr->map)
+ 		return(-1);
+	return (0);
 }

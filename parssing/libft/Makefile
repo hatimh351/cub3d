@@ -14,9 +14,9 @@ OBJS = ${SRCS:%.c=%.o}
 
 all : $(NAME)
 $(NAME) : $(OBJS) libft.h
+	$(AR) $(NAME) $(OBJS)
 %.o : %.c libft.h
 	$(CC) -c $<
-	$(AR) $(NAME) $@
 clean :
 	rm -f $(OBJS)
 fclean : clean

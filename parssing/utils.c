@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:14:12 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/24 11:43:59 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/26 09:37:04 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,34 @@ int	all_elements_in(t_data *ptr)
 	if (check_rgb(ptr->elements[4]) == 0 || check_rgb(ptr->elements[5]) == 0)
 		return (0);
 	return (1);
+}
+
+void	free_splite(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+		free(av[i++]);
+	free(av);	
+}
+
+int	max(int x, int y)
+{
+	if (x < y)
+		x = y;
+	return (x);
+}
+
+void	free_lines(t_lines *head)
+{
+	t_lines	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp->line);
+		free(tmp);
+	}	
 }

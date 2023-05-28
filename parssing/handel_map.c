@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:26:41 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/25 11:06:01 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:58:17 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,53 +39,6 @@ static int	go_map(t_data *ptr, int fd, t_lines **tmp)
 	return (-1);
 }
 
-char	**creat_map(t_lines *head, int height, int width)
-{
-	char	**map;
-	int		i;
-	int		j;
-
-	i = 0;
-	map = malloc(sizeof(char *) * (height + 1));
-	if (!map)
-		return (NULL);
-	while (i < height)
-	{
-		map[i] = malloc(width + 1);	
-		if (!map[i])
-			return (free_splite(map), NULL);
-		j = -1;
-		while (head->line[++j])
-			map[i][j] = head->line[j];
-		while (j < width)
-			map[i][j++] = ' ';
-		map[i][j] = '\0';
-		j = 0;
-		head = head->next;
-		i++;
-	}
-	return (map);
-}
-
-int	max(int x, int y)
-{
-	if (x < y)
-		x = y;
-	return (x);
-}
-
-static int	node(t_lines *head, char *p)
-{
-	while (head->next)
-		head = head->next;
-	head->next = malloc(sizeof(t_lines));
-	if (!head->next)
-		return (-1);
-	head = head->next;
-	head->line = p;
-	head->next = NULL;
-	return (0);
-}
 
 int	height_width(int fd, t_data *ptr, t_lines **head)
 {
@@ -112,4 +65,45 @@ int	height_width(int fd, t_data *ptr, t_lines **head)
 			return (-1);
 	}
 	return (free(p), 0);
+}
+
+char	**creat_map(t_lines *head, int height, int width)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	i = 0;
+	map = malloc(sizeof(char *) * (height + 1));
+	if (!map)
+		return (NULL);
+	while (i < height)
+	{
+		map[i] = malloc(width + 1);	
+		if (!map[i])
+			return (free_splite(map), NULL);
+		j = -1;
+		while (head->line[++j])
+			map[i][j] = head->line[j];
+		while (j < width)
+			map[i][j++] = ' ';
+		map[i][j] = '\0';
+		j = 0;
+		head = head->next;
+		i++;
+	}
+	return (map[i] = NULL, map);
+}
+
+int	node(t_lines *head, char *p)
+{
+	while (head->next)
+		head = head->next;
+	head->next = malloc(sizeof(t_lines));
+	if (!head->next)
+		return (-1);
+	head = head->next;
+	head->line = p;
+	head->next = NULL;
+	return (0);
 }
