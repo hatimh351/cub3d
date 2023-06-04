@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:10:42 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/23 19:30:54 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/04 07:28:45 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*ft_strjoin_gl(char *s1, char *s2)
 	p[i] = '\0';
 	return (free(s1), p);
 }
-
 
 char	*go_new_line(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 01:15:54 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/21 03:26:52 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:54:52 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	forward_backward(t_cub3d *ptr, int direction)
 			return;
 		ptr->xpos += (cos(ptr->angle * (M_PI / 180))) * 2 * direction;
 		ptr->ypos += (sin(ptr->angle * (M_PI / 180))) * 2 * direction;
+		// printf("%f %f\n", (cos(ptr->angle * (M_PI / 180))), (sin(ptr->angle * (M_PI / 180))));
 	}
 }
 
@@ -29,8 +30,8 @@ static void	right_left(t_cub3d *ptr, int direction)
 	{
 		if (there_is_wall(ptr,ptr->xpos + (sin(ptr->angle * (M_PI / 180))) * 1.5 * direction ,ptr->ypos + -(cos(ptr->angle * (M_PI / 180))) * 1.5 * direction))
 			return;
-		ptr->ypos += - round((cos(ptr->angle * (M_PI / 180))) * 2 * direction);
-		ptr->xpos += round((sin(ptr->angle * (M_PI / 180))) * 2 * direction);
+		ptr->ypos += - ((cos(ptr->angle * (M_PI / 180))) * 2 * direction);
+		ptr->xpos += ((sin(ptr->angle * (M_PI / 180))) * 2 * direction);
 	}
 }
 

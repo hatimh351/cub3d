@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:14:12 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/26 09:37:04 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/04 08:46:38 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	free_splite(char **av)
 	i = 0;
 	while (av[i])
 		free(av[i++]);
-	free(av);	
+	free(av);
 }
 
 int	max(int x, int y)

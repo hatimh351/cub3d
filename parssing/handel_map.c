@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:26:41 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/05/26 11:58:17 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/04 07:29:50 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	go_map(t_data *ptr, int fd, t_lines **tmp)
 	return (-1);
 }
 
-
 int	height_width(int fd, t_data *ptr, t_lines **head)
 {
 	char		*p;
@@ -54,8 +53,8 @@ int	height_width(int fd, t_data *ptr, t_lines **head)
 		return (-1);
 	while (p)
 	{
-		 if (ft_strlen(p) == 0)
-			break;
+		if (ft_strlen(p) == 0)
+			break ;
 		ptr->width = max(ft_strlen(p), ptr->width);
 		ptr->height++;
 		if (node(*head, p) == -1)
@@ -79,7 +78,7 @@ char	**creat_map(t_lines *head, int height, int width)
 		return (NULL);
 	while (i < height)
 	{
-		map[i] = malloc(width + 1);	
+		map[i] = malloc(width + 1);
 		if (!map[i])
 			return (free_splite(map), NULL);
 		j = -1;
